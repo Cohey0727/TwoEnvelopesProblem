@@ -1,4 +1,9 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from manim import *
+from components import Envelope
 
 JAPANESE_FONT = "Hiragino Sans"
 
@@ -17,12 +22,9 @@ class TwoEnvelopesIntro(Scene):
         self.play(title_group.animate.to_edge(UP, buff=.5))
         
         
-        # 封筒を描画
-        envelope1 = Rectangle(width=2, height=4, color=BLUE, fill_opacity=0.3)
-        envelope2 = Rectangle(width=2, height=4, color=RED, fill_opacity=0.3)
-        
-        envelope1.shift(LEFT * 2.5)
-        envelope2.shift(RIGHT * 2.5)
+        # 封筒を描画（より封筒らしい形状に）
+        envelope1 = Envelope(color=BLUE, position=LEFT * 2.5)
+        envelope2 = Envelope(color=RED, position=RIGHT * 2.5)
         
         # 封筒のラベル
         label1 = Text("封筒A", font_size=24, font=JAPANESE_FONT).next_to(envelope1, DOWN)
@@ -37,7 +39,7 @@ class TwoEnvelopesIntro(Scene):
         self.wait(1)
         
         # 説明文
-        explanation = Text("2つの封筒にお金が入っています", font_size=24, font=JAPANESE_FONT)
+        explanation = Text("2つの封筒にお金が入っている", font_size=24, font=JAPANESE_FONT)
         explanation.to_edge(DOWN, buff=1)
         self.play(Write(explanation))
         self.wait(2)
@@ -61,8 +63,9 @@ class TwoEnvelopesIntro(Scene):
         money1 = Text("1万円", font_size=20, font=JAPANESE_FONT, color=GREEN)
         money2 = Text("2万円", font_size=20, font=JAPANESE_FONT, color=GREEN)
         
-        money1.move_to(envelope1)
-        money2.move_to(envelope2)
+        # 封筒の中央（本体部分）に配置
+        money1.move_to(envelope1.get_center() + DOWN * 0.2)
+        money2.move_to(envelope2.get_center() + DOWN * 0.2)
         
         self.play(FadeIn(money1), FadeIn(money2))
         self.wait(2)
@@ -71,8 +74,9 @@ class TwoEnvelopesIntro(Scene):
         question_mark1 = Text("?", font_size=36, color=WHITE)
         question_mark2 = Text("?", font_size=36, color=WHITE)
         
-        question_mark1.move_to(envelope1)
-        question_mark2.move_to(envelope2)
+        # 封筒の中央（本体部分）に配置
+        question_mark1.move_to(envelope1.get_center() + DOWN * 0.2)
+        question_mark2.move_to(envelope2.get_center() + DOWN * 0.2)
         
         self.play(
             Transform(money1, question_mark1),
@@ -89,7 +93,7 @@ class TwoEnvelopesIntro(Scene):
         self.play(FadeOut(*self.mobjects))
         
         final_text1 = Text("このシンプルな設定から", font_size=32, font=JAPANESE_FONT)
-        final_text2 = Text("興味深いパラドックスが生まれます", font_size=32, font=JAPANESE_FONT).next_to(final_text1, DOWN, buff=0.3)
+        final_text2 = Text("興味深いパラドックスが生まれる", font_size=32, font=JAPANESE_FONT).next_to(final_text1, DOWN, buff=0.3)
         
         final_group = VGroup(final_text1, final_text2).move_to(ORIGIN)
         self.play(Write(final_text1))
