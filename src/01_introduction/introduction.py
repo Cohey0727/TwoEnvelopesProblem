@@ -14,17 +14,12 @@ class TwoEnvelopesIntro(Scene):
         self.play(Write(subtitle), run_time=1)
         self.wait(1)
         
-        self.play(title_group.animate.to_edge(UP))
+        self.play(title_group.animate.to_edge(UP, buff=.5))
         
-        # 問題設定の説明
-        intro_text = Text("数学の有名なパラドックスの一つです", font_size=28, font=JAPANESE_FONT)
-        self.play(Write(intro_text))
-        self.wait(2)
-        self.play(FadeOut(intro_text))
         
         # 封筒を描画
-        envelope1 = Rectangle(width=2, height=1.2, color=BLUE, fill_opacity=0.3)
-        envelope2 = Rectangle(width=2, height=1.2, color=RED, fill_opacity=0.3)
+        envelope1 = Rectangle(width=2, height=4, color=BLUE, fill_opacity=0.3)
+        envelope2 = Rectangle(width=2, height=4, color=RED, fill_opacity=0.3)
         
         envelope1.shift(LEFT * 2.5)
         envelope2.shift(RIGHT * 2.5)
@@ -43,7 +38,7 @@ class TwoEnvelopesIntro(Scene):
         
         # 説明文
         explanation = Text("2つの封筒にお金が入っています", font_size=24, font=JAPANESE_FONT)
-        explanation.to_edge(DOWN, buff=1.5)
+        explanation.to_edge(DOWN, buff=1)
         self.play(Write(explanation))
         self.wait(2)
         
