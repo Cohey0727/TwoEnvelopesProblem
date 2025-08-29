@@ -22,7 +22,7 @@ TwoEnvelopesProblem/
 │   ├── 03_paradox_analysis/   # パラドックス分析部（準備中）
 │   └── title.py               # タイトル画面
 ├── media/                     # 生成される動画・画像ファイル
-├── SENARIO.md                 # シナリオ詳細説明
+├── SCENARIO.md                 # シナリオ詳細説明
 ├── Makefile                   # ビルドコマンド集
 ├── pyproject.toml             # Python依存関係設定
 └── package.json               # Node.js依存関係設定
@@ -105,7 +105,7 @@ make help
 
 ## ファイル説明
 
-### `SENARIO.md`
+### `SCENARIO.md`
 
 動画で説明する内容の詳細なシナリオが記載されています。パラドックスの説明から分析まで、段階的な構成が含まれています。
 
