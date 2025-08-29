@@ -47,7 +47,7 @@ TwoEnvelopesProblem/
 1. Python依存関係のインストール:
 
 ```bash
-uv install
+uv sync
 ```
 
 3. Node.js依存関係のインストール（開発用）:
